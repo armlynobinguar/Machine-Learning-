@@ -4,3 +4,12 @@ test = pd.read_csv("test.csv")
 test_shape = test.shape
 train = pd.read_csv("train.csv")
 train_shape = train.shape
+
+import matplotlib.pyplot as plt
+
+sex_pivot = train.pivot_table(index="Sex",values="Survived")
+sex_pivot.plot.bar()
+plt.show()
+class_pivot = train.pivot_table(index="Pclass",values="Survived")
+class_pivot.plot.bar()
+plt.show()
