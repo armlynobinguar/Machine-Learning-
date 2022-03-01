@@ -73,3 +73,12 @@ lr.fit(train_X, train_y)
 predictions = lr.predict(test_X)
 accuracy = accuracy_score(test_y, predictions)
 print(accuracy)
+
+
+from sklearn.model_selection import cross_val_score
+import numpy as np
+lr = LogisticRegression()
+scores = cross_val_score(lr, all_X, all_y, cv=10)
+accuracy = np.mean(scores)
+print(scores)
+print(accuracy)
