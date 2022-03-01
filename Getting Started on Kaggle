@@ -50,3 +50,20 @@ columns = ['Pclass_1', 'Pclass_2', 'Pclass_3', 'Sex_female', 'Sex_male',
 from sklearn.linear_model import LogisticRegression
 lr = LogisticRegression()
 lr.fit(train[columns], train["Survived"])
+
+
+holdout = test # from now on we will refer to this
+               # dataframe as the holdout data
+
+from sklearn.model_selection import train_test_split
+
+columns = ['Pclass_1', 'Pclass_2', 'Pclass_3', 'Sex_female', 'Sex_male',
+       'Age_categories_Missing','Age_categories_Infant',
+       'Age_categories_Child', 'Age_categories_Teenager',
+       'Age_categories_Young Adult', 'Age_categories_Adult',
+       'Age_categories_Senior']
+all_X = train[columns]
+all_y = train['Survived']
+
+train_X, test_X, train_y, test_y = train_test_split(
+    all_X, all_y, test_size=0.20,random_state=0)
