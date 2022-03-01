@@ -124,3 +124,20 @@ for column in ["Age_categories","Pclass","Sex"]:
     holdout = create_dummies(holdout,column)
 
 print(train.columns)
+
+
+from sklearn.preprocessing import minmax_scale
+# The holdout set has a missing value in the Fare column which
+# we'll fill with the mean.
+holdout["Fare"] = holdout["Fare"].fillna(train["Fare"].mean())
+columns = ["SibSp","Parch","Fare"]
+
+train["Embarked"] = train["Embarked"].fillna("S")
+holdout["Embarked"] = holdout["Embarked"].fillna("S")
+
+train = create_dummies(train,"Embarked")
+holdout = create_dummies(holdout,"Embarked")
+
+for col in columns:
+    train[col + "_scaled"] = minmax_scale(train[col])
+    holdout[col + "_scaled"] = minmax_scale(holdout[col])
