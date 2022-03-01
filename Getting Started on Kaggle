@@ -161,3 +161,15 @@ feature_importance = pd.Series(coefficients[0],
                                index=train[columns].columns)
 feature_importance.plot.barh()
 plt.show()
+
+from sklearn.model_selection import cross_val_score
+
+columns = ['Age_categories_Infant', 'SibSp_scaled', 'Sex_female', 'Sex_male',
+       'Pclass_1', 'Pclass_3', 'Age_categories_Senior', 'Parch_scaled']
+all_X = train[columns]
+all_y = train['Survived']
+
+lr = LogisticRegression()
+scores = cross_val_score(lr, all_X, all_y, cv=10)
+accuracy = scores.mean()
+print(accuracy)
