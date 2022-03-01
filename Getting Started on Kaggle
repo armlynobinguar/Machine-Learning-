@@ -67,3 +67,9 @@ all_y = train['Survived']
 
 train_X, test_X, train_y, test_y = train_test_split(
     all_X, all_y, test_size=0.20,random_state=0)
+    from sklearn.metrics import accuracy_score
+lr = LogisticRegression()
+lr.fit(train_X, train_y)
+predictions = lr.predict(test_X)
+accuracy = accuracy_score(test_y, predictions)
+print(accuracy)
