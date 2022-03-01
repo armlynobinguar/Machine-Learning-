@@ -1,0 +1,6 @@
+import pandas as pd
+
+test = pd.read_csv("test.csv")
+test_shape = test.shape
+train = pd.read_csv("train.csv")
+train_shape = train.shape
