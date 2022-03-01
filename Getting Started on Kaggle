@@ -141,3 +141,23 @@ holdout = create_dummies(holdout,"Embarked")
 for col in columns:
     train[col + "_scaled"] = minmax_scale(train[col])
     holdout[col + "_scaled"] = minmax_scale(holdout[col])
+
+
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LogisticRegression
+
+columns = ['Age_categories_Missing', 'Age_categories_Infant',
+       'Age_categories_Child', 'Age_categories_Teenager',
+       'Age_categories_Young Adult', 'Age_categories_Adult',
+       'Age_categories_Senior', 'Pclass_1', 'Pclass_2', 'Pclass_3',
+       'Sex_female', 'Sex_male', 'Embarked_C', 'Embarked_Q', 'Embarked_S',
+       'SibSp_scaled', 'Parch_scaled', 'Fare_scaled']
+lr = LogisticRegression()
+lr.fit(train[columns],train['Survived'])
+
+coefficients = lr.coef_
+
+feature_importance = pd.Series(coefficients[0],
+                               index=train[columns].columns)
+feature_importance.plot.barh()
+plt.show()
