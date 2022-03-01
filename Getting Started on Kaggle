@@ -40,3 +40,13 @@ test = create_dummies(test,"Sex")
 
 train = create_dummies(train,"Age_categories")
 test = create_dummies(test,"Age_categories")
+
+columns = ['Pclass_1', 'Pclass_2', 'Pclass_3', 'Sex_female', 'Sex_male',
+       'Age_categories_Missing','Age_categories_Infant',
+       'Age_categories_Child', 'Age_categories_Teenager',
+       'Age_categories_Young Adult', 'Age_categories_Adult',
+       'Age_categories_Senior']
+
+from sklearn.linear_model import LogisticRegression
+lr = LogisticRegression()
+lr.fit(train[columns], train["Survived"])
