@@ -27,3 +27,16 @@ test = process_age(test,cut_points,label_names)
 pivot = train.pivot_table(index="Age_categories",values='Survived')
 pivot.plot.bar()
 plt.show()
+
+def create_dummies(df,column_name):
+    dummies = pd.get_dummies(df[column_name],prefix=column_name)
+    df = pd.concat([df,dummies],axis=1)
+    return df
+
+train = create_dummies(train,"Pclass")
+test = create_dummies(test,"Pclass")
+train = create_dummies(train,"Sex")
+test = create_dummies(test,"Sex")
+
+train = create_dummies(train,"Age_categories")
+test = create_dummies(test,"Age_categories")
