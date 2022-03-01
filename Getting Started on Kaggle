@@ -91,3 +91,11 @@ columns = ['Pclass_1', 'Pclass_2', 'Pclass_3', 'Sex_female', 'Sex_male',
 lr = LogisticRegression()
 lr.fit(all_X,all_y)
 holdout_predictions = lr.predict(holdout[columns])
+
+
+holdout_ids = holdout["PassengerId"]
+submission_df = {"PassengerId": holdout_ids,
+                 "Survived": holdout_predictions}
+submission = pd.DataFrame(submission_df)
+
+submission.to_csv("submission.csv",index=False)
