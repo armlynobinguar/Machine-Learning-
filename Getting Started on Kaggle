@@ -173,3 +173,21 @@ lr = LogisticRegression()
 scores = cross_val_score(lr, all_X, all_y, cv=10)
 accuracy = scores.mean()
 print(accuracy)
+
+
+def process_age(df,cut_points,label_names):
+    df["Age"] = df["Age"].fillna(-0.5)
+    df["Age_categories"] = pd.cut(df["Age"],cut_points,labels=label_names)
+    return df
+def process_fare(df,cut_points,label_names):
+    df["Fare_categories"] = pd.cut(df["Fare"],cut_points,labels=label_names)
+    return df
+
+cut_points = [0,12,50,100,1000]
+label_names = ["0-12","12-50","50-100","100+"]
+
+train = process_fare(train,cut_points,label_names)
+holdout = process_fare(holdout,cut_points,label_names)
+
+train = create_dummies(train,"Fare_categories")
+holdout = create_dummies(holdout,"Fare_categories")
