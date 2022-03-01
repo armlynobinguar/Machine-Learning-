@@ -82,3 +82,12 @@ scores = cross_val_score(lr, all_X, all_y, cv=10)
 accuracy = np.mean(scores)
 print(scores)
 print(accuracy)
+
+columns = ['Pclass_1', 'Pclass_2', 'Pclass_3', 'Sex_female', 'Sex_male',
+       'Age_categories_Missing','Age_categories_Infant',
+       'Age_categories_Child', 'Age_categories_Teenager',
+       'Age_categories_Young Adult', 'Age_categories_Adult',
+       'Age_categories_Senior']
+lr = LogisticRegression()
+lr.fit(all_X,all_y)
+holdout_predictions = lr.predict(holdout[columns])
