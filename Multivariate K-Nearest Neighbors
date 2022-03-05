@@ -27,3 +27,19 @@ first_listing = normalized_listings.iloc[0][['accommodates', 'bathrooms']]
 fifth_listing = normalized_listings.iloc[4][['accommodates', 'bathrooms']]
 first_fifth_distance = distance.euclidean(first_listing, fifth_listing)
 print(first_fifth_distance)
+
+
+from sklearn.neighbors import KNeighborsRegressor
+
+train_df = normalized_listings.iloc[0:2792]
+test_df = normalized_listings.iloc[2792:]
+train_columns = ['accommodates', 'bathrooms']
+
+# Instantiate ML model.
+knn = KNeighborsRegressor(n_neighbors=5, algorithm='brute')
+
+# Fit model to data.
+knn.fit(train_df[train_columns], train_df['price'])
+
+# Use model to make predictions.
+predictions = knn.predict(test_df[train_columns])
