@@ -21,3 +21,9 @@ print(dc_listings.isnull().sum())
 normalized_listings = (dc_listings - dc_listings.mean())/(dc_listings.std())
 normalized_listings['price'] = dc_listings['price']
 print(normalized_listings.head(3))
+
+from scipy.spatial import distance
+first_listing = normalized_listings.iloc[0][['accommodates', 'bathrooms']]
+fifth_listing = normalized_listings.iloc[4][['accommodates', 'bathrooms']]
+first_fifth_distance = distance.euclidean(first_listing, fifth_listing)
+print(first_fifth_distance)
