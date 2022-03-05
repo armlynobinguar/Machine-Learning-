@@ -17,3 +17,7 @@ print(dc_listings.isnull().sum())
 dc_listings = dc_listings.drop(['cleaning_fee', 'security_deposit'], axis=1)
 dc_listings = dc_listings.dropna(axis=0)
 print(dc_listings.isnull().sum())
+
+normalized_listings = (dc_listings - dc_listings.mean())/(dc_listings.std())
+normalized_listings['price'] = dc_listings['price']
+print(normalized_listings.head(3))
