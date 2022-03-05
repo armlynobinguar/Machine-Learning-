@@ -24,3 +24,8 @@ def predict_price(new_listing):
     return(predicted_price)
 
 test_df['predicted_price'] = test_df['accommodates'].apply(predict_price)
+
+import numpy as np
+test_df['error'] = np.absolute(test_df['predicted_price'] - test_df['price'])
+mae = test_df['error'].mean()
+print(mae)
