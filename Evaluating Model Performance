@@ -29,3 +29,7 @@ import numpy as np
 test_df['error'] = np.absolute(test_df['predicted_price'] - test_df['price'])
 mae = test_df['error'].mean()
 print(mae)
+
+test_df['squared_error'] = (test_df['predicted_price'] - test_df['price'])**(2)
+mse = test_df['squared_error'].mean()
+print(mse)
