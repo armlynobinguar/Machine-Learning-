@@ -8,3 +8,9 @@ our_acc_value = 3
 first_living_space_value = dc_listings.iloc[0]['accommodates']
 first_distance = np.abs(first_living_space_value - our_acc_value)
 print(first_distance)
+
+new_listing = 3
+dc_listings['distance'] = dc_listings['accommodates'].apply(
+    lambda x: np.abs(x - new_listing)
+)
+print(dc_listings['distance'].value_counts())
