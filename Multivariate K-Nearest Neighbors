@@ -67,3 +67,15 @@ four_mse = mean_squared_error(test_df['price'], four_predictions)
 four_rmse = four_mse ** (1/2)
 print(four_mse)
 print(four_rmse)
+
+knn = KNeighborsRegressor(n_neighbors=5, algorithm='brute')
+
+features = train_df.columns.tolist()
+features.remove('price')
+
+knn.fit(train_df[features], train_df['price'])
+all_features_predictions = knn.predict(test_df[features])
+all_features_mse = mean_squared_error(test_df['price'], all_features_predictions)
+all_features_rmse = all_features_mse ** (1/2)
+print(all_features_mse)
+print(all_features_rmse)
