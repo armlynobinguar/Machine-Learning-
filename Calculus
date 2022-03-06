@@ -32,3 +32,10 @@ x,y = sympy.symbols('x y')
 y = 3*(x**2) + 3*x - 3
 limit_two = sympy.limit(y, x, 1)
 print(limit_two)
+
+
+import sympy
+x,y = sympy.symbols('x y')
+y = x**3 + 2*(x**2) - x*10
+limit_three = sympy.limit(y, x, -1)
+print(limit_three)
