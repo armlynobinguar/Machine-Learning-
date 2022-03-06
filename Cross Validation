@@ -80,3 +80,13 @@ rmses = train_and_validate(dc_listings, fold_ids)
 print(rmses)
 avg_rmse = np.mean(rmses)
 print(avg_rmse)
+
+from sklearn.model_selection import cross_val_score, KFold
+kf = KFold(5, shuffle=True, random_state=1)
+model = KNeighborsRegressor()
+mses = cross_val_score(model, dc_listings[["accommodates"]], dc_listings["price"], scoring="neg_mean_squared_error", cv=kf)
+rmses = np.sqrt(np.absolute(mses))
+avg_rmse = np.mean(rmses)
+
+print(rmses)
+print(avg_rmse)
