@@ -56,3 +56,27 @@ labels = model.predict(test_iteration_one[["accommodates"]])
 test_iteration_one["predicted_price"] = labels
 iteration_one_mse = mean_squared_error(test_iteration_one["price"], test_iteration_one["predicted_price"])
 iteration_one_rmse = iteration_one_mse ** (1/2)
+
+# Use np.mean to calculate the mean.
+import numpy as np
+fold_ids = [1,2,3,4,5]
+def train_and_validate(df, folds):
+    fold_rmses = []
+    for fold in folds:
+        # Train
+        model = KNeighborsRegressor()
+        train = df[df["fold"] != fold]
+        test = df[df["fold"] == fold].copy()
+        model.fit(train[["accommodates"]], train["price"])
+        # Predict
+        labels = model.predict(test[["accommodates"]])
+        test["predicted_price"] = labels
+        mse = mean_squared_error(test["price"], test["predicted_price"])
+        rmse = mse**(1/2)
+        fold_rmses.append(rmse)
+    return(fold_rmses)
+
+rmses = train_and_validate(dc_listings, fold_ids)
+print(rmses)
+avg_rmse = np.mean(rmses)
+print(avg_rmse)
