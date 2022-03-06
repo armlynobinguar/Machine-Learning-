@@ -46,3 +46,18 @@ for hp in hyper_params:
     mse_values.append(mse)
 plt.scatter(hyper_params, mse_values)
 plt.show()
+
+hyper_params = [x for x in range(1,21)]
+mse_values = list()
+features = train_df.columns.tolist()
+features.remove('price')
+
+for hp in hyper_params:
+    knn = KNeighborsRegressor(n_neighbors=hp, algorithm='brute')
+    knn.fit(train_df[features], train_df['price'])
+    predictions = knn.predict(test_df[features])
+    mse = mean_squared_error(test_df['price'], predictions)
+    mse_values.append(mse)
+
+plt.scatter(hyper_params, mse_values)
+plt.show()
