@@ -11,3 +11,9 @@ matrix_one = np.asarray([
     [30, -1, -1000],
     [50, -1, -100]  
 ], dtype=np.float32)
+
+matrix_one = np.asarray([
+    [30, -1, -500],
+    [50, -1, -100]  
+], dtype=np.float32)
+matrix_one[0] = matrix_one[0]/30
