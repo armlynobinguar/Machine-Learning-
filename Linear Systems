@@ -17,3 +17,10 @@ matrix_one = np.asarray([
     [50, -1, -100]  
 ], dtype=np.float32)
 matrix_one[0] = matrix_one[0]/30
+
+matrix_three = np.asarray([
+    [1, -1/30, -1000/30],
+    [0, 1, 2350]  
+], dtype=np.float32)
+matrix_three[0] += matrix_three[1]/30
+print(matrix_three)
