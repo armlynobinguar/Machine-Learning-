@@ -11,3 +11,8 @@ derivative_one = "5x^4"
 derivative_two = "9x^8"
 slope_one = 80
 slope_two = 0
+
+derivative_three = "5x^4 - 1"
+derivative_four = "3x^2 - 2x"
+slope_three = 4
+slope_four = 8
