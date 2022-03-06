@@ -3,3 +3,17 @@ import matplotlib.pyplot as plt
 x = np.linspace(0, 3, 100)
 y = -1*(x**2) + x*3 - 1
 plt.plot(x,y)
+
+def slope(x1,x2,y1,y2):
+    ## Finish the function here
+    return 0
+slope_one = slope(0,4,1,13)
+slope_two = slope(5,-1,16,-2)
+def slope(x1,x2,y1,y2):
+    rc = (y2 - y1)/(x2 - x1)
+    return rc
+slope_one = slope(0,4,1,13)
+slope_two = slope(5,-1,16,-2)
+
+print(slope_one)
+print(slope_two)
