@@ -42,3 +42,17 @@ dc_listings.loc[dc_listings.index[2978:3723], "fold"] = 5
 
 print(dc_listings['fold'].value_counts())
 print("\n Num of missing values: ", dc_listings['fold'].isnull().sum())
+
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.metrics import mean_squared_error
+# Training
+model = KNeighborsRegressor()
+train_iteration_one = dc_listings[dc_listings["fold"] != 1]
+test_iteration_one = dc_listings[dc_listings["fold"] == 1].copy()
+model.fit(train_iteration_one[["accommodates"]], train_iteration_one["price"])
+
+# Predicting
+labels = model.predict(test_iteration_one[["accommodates"]])
+test_iteration_one["predicted_price"] = labels
+iteration_one_mse = mean_squared_error(test_iteration_one["price"], test_iteration_one["predicted_price"])
+iteration_one_rmse = iteration_one_mse ** (1/2)
