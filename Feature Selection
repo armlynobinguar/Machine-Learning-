@@ -14,3 +14,9 @@ numerical_train = numerical_train.drop(['PID', 'Year Built', 'Year Remod/Add', '
 null_series = numerical_train.isnull().sum()
 full_cols_series = null_series[null_series == 0]
 print(full_cols_series)
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+strong_corrs = sorted_corrs[sorted_corrs > 0.3]
+corrmat = train_subset[strong_corrs.index].corr()
+sns.heatmap(corrmat)
