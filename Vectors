@@ -64,3 +64,15 @@ vector_two = np.asarray([
 ], dtype=np.float32)
 
 vector_linear_combination = 2*vector_one + 5*vector_two
+
+v = np.asarray([
+    [3],
+    [1]
+], dtype=np.float32)
+
+w = np.asarray([
+    [1],
+    [2]
+], dtype=np.float32)
+
+end_point = 2*v - 2*w
