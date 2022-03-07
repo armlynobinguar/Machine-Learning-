@@ -45,3 +45,14 @@ test_rmse = np.sqrt(test_mse)
 
 print(train_rmse)
 print(test_rmse)
+
+cols = ['Overall Cond', 'Gr Liv Area']
+lr.fit(train[cols], train['SalePrice'])
+train_predictions = lr.predict(train[cols])
+test_predictions = lr.predict(test[cols])
+
+train_rmse_2 = np.sqrt(mean_squared_error(train_predictions, train['SalePrice']))
+test_rmse_2 = np.sqrt(mean_squared_error(test_predictions, test['SalePrice']))
+
+print(train_rmse_2)
+print(test_rmse_2)
