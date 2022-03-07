@@ -47,3 +47,23 @@ print(trans_ab)
 
 product_ab = np.dot(matrix_a, matrix_b)
 print(np.transpose(product_ab))
+
+i_2 = np.identity(2)
+i_3 = np.identity(3)
+
+matrix_33 = np.asarray([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+])
+
+matrix_23 = np.asarray([
+    [0.7, 3, 1],
+    [1.7, 2, 10],
+], dtype=np.float32)
+
+identity_33 = np.dot(i_3, matrix_33)
+identity_23 = np.dot(i_2, matrix_23)
+
+print(identity_33)
+print(identity_23)
