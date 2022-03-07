@@ -1,0 +1,9 @@
+import pandas as pd
+
+data = pd.read_csv('AmesHousing.txt', delimiter="\t")
+train = data[0:1460]
+test = data[1460:]
+
+train_null_counts = train.isnull().sum()
+print(train_null_counts)
+df_no_mv = train[train_null_counts[train_null_counts==0].index]
