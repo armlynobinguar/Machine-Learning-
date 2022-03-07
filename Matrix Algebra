@@ -99,3 +99,20 @@ vector_b = np.asarray([
 matrix_a_inverse = np.linalg.inv(matrix_a)
 solution_x = np.dot(matrix_a_inverse, vector_b)
 print(solution_x)
+
+
+matrix_22 = np.asarray([
+    [8, 4],
+    [4, 2]
+])
+
+matrix_33 = np.asarray([
+    [1, 1, 1],
+    [1, 1, 6],
+    [7, 8, 9]
+])
+det_22 = np.linalg.det(matrix_22)
+det_33 = np.linalg.det(matrix_33)
+
+print(det_22)
+print(det_33)
