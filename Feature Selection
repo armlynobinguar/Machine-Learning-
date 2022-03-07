@@ -44,3 +44,8 @@ test_rmse = np.sqrt(test_mse)
 
 print(train_rmse)
 print(test_rmse)
+
+unit_train = (train[features] - train[features].min())/(train[features].max() - train[features].min())
+print(unit_train.min())
+print(unit_train.max())
+# Confirmed: the min and max values are 0.0 and 1.0 respectively
