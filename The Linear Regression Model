@@ -18,3 +18,12 @@ train.plot(x="Gr Liv Area", y="SalePrice", ax=ax2, kind="scatter")
 train.plot(x="Overall Cond", y="SalePrice", ax=ax3, kind="scatter")
 
 plt.show()
+
+from sklearn.linear_model import LinearRegression
+lr = LinearRegression()
+lr.fit(train[['Gr Liv Area']], train['SalePrice'])
+print(lr.coef_)
+print(lr.intercept_)
+
+a0 = lr.intercept_
+a1 = lr.coef_
