@@ -21,3 +21,6 @@ for col in text_cols:
     col_dummies = pd.get_dummies(train[col])
     train = pd.concat([train, col_dummies], axis=1)
     del train[col]
+
+
+train['years_until_remod'] = train['Year Remod/Add'] - train['Year Built']
