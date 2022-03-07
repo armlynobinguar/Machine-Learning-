@@ -86,3 +86,16 @@ def matrix_inverse_two(mat):
 inverse_a = matrix_inverse_two(matrix_a)
 i_2 = np.dot(inverse_a, matrix_a)
 print(i_2)
+
+matrix_a = np.asarray([
+    [30, -1],
+    [50, -1]
+])
+
+vector_b = np.asarray([
+    [-1000],
+    [-100]
+])
+matrix_a_inverse = np.linalg.inv(matrix_a)
+solution_x = np.dot(matrix_a_inverse, vector_b)
+print(solution_x)
