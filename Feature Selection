@@ -1,0 +1,16 @@
+import pandas as pd
+data = pd.read_csv('AmesHousing.txt', delimiter="\t")
+train = data[0:1460]
+test = data[1460:]
+# Default code
+import pandas as pd
+data = pd.read_csv('AmesHousing.txt', delimiter="\t")
+train = data[0:1460]
+test = data[1460:]
+
+# Solution code
+numerical_train = train.select_dtypes(include=['int', 'float'])
+numerical_train = numerical_train.drop(['PID', 'Year Built', 'Year Remod/Add', 'Garage Yr Blt', 'Mo Sold', 'Yr Sold'], axis=1)
+null_series = numerical_train.isnull().sum()
+full_cols_series = null_series[null_series == 0]
+print(full_cols_series)
