@@ -25,3 +25,25 @@ product_ba = np.dot(matrix_b, matrix_a)
 
 print(product_ab)
 print(product_ba)
+
+matrix_a = np.asarray([
+    [0.7, 3],
+    [1.7, 2],
+    [0.7, 9]
+], dtype=np.float32)
+
+matrix_b = np.asarray([
+    [113, 3, 10],
+    [1, 0, 1],
+], dtype=np.float32)
+transpose_a = np.transpose(matrix_a)
+print(np.transpose(transpose_a))
+
+trans_ba = np.dot(np.transpose(matrix_b), np.transpose(matrix_a))
+print(trans_ba)
+
+trans_ab = np.dot(np.transpose(matrix_a), np.transpose(matrix_b))
+print(trans_ab)
+
+product_ab = np.dot(matrix_a, matrix_b)
+print(np.transpose(product_ab))
