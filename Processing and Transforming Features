@@ -15,3 +15,9 @@ for col in text_cols:
 for col in text_cols:
     train[col] = train[col].astype('category')
 train['Utilities'].cat.codes.value_counts()
+
+dummy_cols = pd.DataFrame()
+for col in text_cols:
+    col_dummies = pd.get_dummies(train[col])
+    train = pd.concat([train, col_dummies], axis=1)
+    del train[col]
