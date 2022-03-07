@@ -7,3 +7,11 @@ test = data[1460:]
 train_null_counts = train.isnull().sum()
 print(train_null_counts)
 df_no_mv = train[train_null_counts[train_null_counts==0].index]
+
+text_cols = df_no_mv.select_dtypes(include=['object']).columns
+
+for col in text_cols:
+    print(col+":", len(train[col].unique()))
+for col in text_cols:
+    train[col] = train[col].astype('category')
+train['Utilities'].cat.codes.value_counts()
