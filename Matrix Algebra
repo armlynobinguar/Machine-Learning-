@@ -67,3 +67,22 @@ identity_23 = np.dot(i_2, matrix_23)
 
 print(identity_33)
 print(identity_23)
+
+
+matrix_a = np.asarray([
+    [1.5, 3],
+    [1, 4]
+])
+def matrix_inverse_two(mat):
+    det = (mat[0,0]*mat[1,1] - mat[0,1]*mat[1,0])
+    if det == 0:
+        raise ValueError("The matrix isn't invertible")
+    right_mat = np.asarray([
+        [mat[1,1], -mat[0,1]],
+        [-mat[1,0], mat[0,0]]
+    ])
+    inv_mat = np.dot(1/det, right_mat)
+    return inv_mat
+inverse_a = matrix_inverse_two(matrix_a)
+i_2 = np.dot(inverse_a, matrix_a)
+print(i_2)
