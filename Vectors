@@ -49,3 +49,18 @@ plt.quiver(0, 0, 3, 1, angles='xy', scale_units='xy', scale=1, color='blue')
 plt.quiver(0, 0, 6, 2, angles='xy', scale_units='xy', scale=1, color='green')
 plt.quiver(0, 0, 9, 3, angles='xy', scale_units='xy', scale=1, color='orange')
 plt.show()
+
+import numpy as np
+
+vector_one = np.asarray([
+    [1],
+    [2],
+    [1]
+], dtype=np.float32)
+vector_two = np.asarray([
+    [3],
+    [0],
+    [1]
+], dtype=np.float32)
+
+vector_linear_combination = 2*vector_one + 5*vector_two
