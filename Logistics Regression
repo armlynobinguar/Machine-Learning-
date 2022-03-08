@@ -98,3 +98,21 @@ shuffled_cars = cars.iloc[shuffled_rows]
 highest_train_row = int(cars.shape[0] * .70)
 train = shuffled_cars.iloc[0:highest_train_row]
 test = shuffled_cars.iloc[highest_train_row:]
+
+
+from sklearn.linear_model import LogisticRegression
+
+unique_origins = cars["origin"].unique()
+unique_origins.sort()
+
+models = {}
+features = [c for c in train.columns if c.startswith("cyl") or c.startswith("year")]
+
+for origin in unique_origins:
+    model = LogisticRegression()
+    
+    X_train = train[features]
+    y_train = train["origin"] == origin
+
+    model.fit(X_train, y_train)
+    models[origin] = model
