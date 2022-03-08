@@ -1,0 +1,15 @@
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import roc_auc_score
+
+columns = ["age", "workclass", "education_num", "marital_status", "occupation", "relationship", "race", "sex", "hours_per_week", "native_country"]
+
+clf = DecisionTreeClassifier(random_state=1, min_samples_leaf=2)
+clf.fit(train[columns], train["high_income"])
+
+clf2 = DecisionTreeClassifier(random_state=1, max_depth=5)
+clf2.fit(train[columns], train["high_income"])
+predictions = clf.predict(test[columns])
+print(roc_auc_score(test["high_income"], predictions))
+
+predictions = clf2.predict(test[columns])
+print(roc_auc_score(test["high_income"], predictions))
