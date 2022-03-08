@@ -95,3 +95,26 @@ for col in columns:
 # Find the name of the column with the highest gain
 highest_gain_index = information_gains.index(max(information_gains))
 highest_gain = columns[highest_gain_index]
+
+def find_best_column(data, target_name, columns):
+    # Fill in the logic here to automatically find the column in columns to split on
+    # data is a dataframe
+    # target_name is the name of the target variable
+    # columns is a list of potential columns to split on
+    return None
+
+# A list of columns to potentially split income with
+columns = ["age", "workclass", "education_num", "marital_status", "occupation", "relationship", "race", "sex", "hours_per_week", "native_country"]
+def find_best_column(data, target_name, columns):
+    information_gains = []
+    # Loop through and compute information gains
+    for col in columns:
+        information_gain = calc_information_gain(data, col, "high_income")
+        information_gains.append(information_gain)
+
+    # Find the name of the column with the highest gain
+    highest_gain_index = information_gains.index(max(information_gains))
+    highest_gain = columns[highest_gain_index]
+    return highest_gain
+
+income_split = find_best_column(income, "high_income", columns)
