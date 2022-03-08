@@ -77,3 +77,9 @@ false_positive_filter = (admissions["predicted_label"] == 1) & (admissions["actu
 false_positives = len(admissions[false_positive_filter])
 specificity = (true_negatives) / (false_positives + true_negatives)
 print(specificity)
+
+import pandas as pd
+cars = pd.read_csv("auto.csv")
+print(cars.head())
+unique_regions = cars["origin"].unique()
+print(unique_regions)
