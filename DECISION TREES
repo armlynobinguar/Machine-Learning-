@@ -12,3 +12,12 @@ public_incomes = income[income["workclass"] != 4]
 
 print(private_incomes.shape)
 print(public_incomes.shape)
+
+import math
+# We'll do the same calculation we did above, but in Python
+# Passing in 2 as the second parameter to math.log will take a base 2 log
+entropy = -(2/5 * math.log(2/5, 2) + 3/5 * math.log(3/5, 2))
+print(entropy)
+prob_0 = income[income["high_income"] == 0].shape[0] / income.shape[0]
+prob_1 = income[income["high_income"] == 1].shape[0] / income.shape[0]
+income_entropy = -(prob_0 * math.log(prob_0, 2) + prob_1 * math.log(prob_1, 2))
