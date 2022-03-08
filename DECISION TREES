@@ -5,3 +5,10 @@ print(income["workclass"].head(5))
 for name in ["education", "marital_status", "occupation", "relationship", "race", "sex", "native_country", "high_income"]:
     col = pandas.Categorical(income[name])
     income[name] = col.codes
+    
+    # Enter your code here
+private_incomes = income[income["workclass"] == 4]
+public_incomes = income[income["workclass"] != 4]
+
+print(private_incomes.shape)
+print(public_incomes.shape)
