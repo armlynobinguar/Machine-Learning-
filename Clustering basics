@@ -23,3 +23,8 @@ print(democratic_outliers)
 
 plt.scatter(x=senator_distances[:,0], y=senator_distances[:,1], c=labels, linewidths=0)
 plt.show()
+
+extremism = (senator_distances ** 3).sum(axis=1)
+votes["extremism"] = extremism
+votes.sort_values("extremism", inplace=True, ascending=False)
+print(votes.head(10))
