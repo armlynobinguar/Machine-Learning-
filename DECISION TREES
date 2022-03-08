@@ -56,3 +56,42 @@ left_split = income[income["age"] <= median_age]
 right_split = income[income["age"] > median_age]
 
 age_information_gain = income_entropy - ((left_split.shape[0] / income.shape[0]) * calc_entropy(left_split["high_income"]) + ((right_split.shape[0] / income.shape[0]) * calc_entropy(right_split["high_income"])))
+
+
+def calc_information_gain(data, split_name, target_name):
+    """
+    Calculate information gain given a data set, column to split on, and target
+    """
+    # Calculate the original entropy
+    original_entropy = calc_entropy(data[target_name])
+    
+    # Find the median of the column we're splitting
+    column = data[split_name]
+    median = column.median()
+    
+    # Make two subsets of the data, based on the median
+    left_split = data[column <= median]
+    right_split = data[column > median]
+    
+    # Loop through the splits and calculate the subset entropies
+    to_subtract = 0
+    for subset in [left_split, right_split]:
+        prob = (subset.shape[0] / data.shape[0]) 
+        to_subtract += prob * calc_entropy(subset[target_name])
+    
+    # Return information gain
+    return original_entropy - to_subtract
+
+# Verify that our answer is the same as on the last screen
+print(calc_information_gain(income, "age", "high_income"))
+
+columns = ["age", "workclass", "education_num", "marital_status", "occupation", "relationship", "race", "sex", "hours_per_week", "native_country"]
+information_gains = []
+# Loop through and compute information gains
+for col in columns:
+    information_gain = calc_information_gain(income, col, "high_income")
+    information_gains.append(information_gain)
+
+# Find the name of the column with the highest gain
+highest_gain_index = information_gains.index(max(information_gains))
+highest_gain = columns[highest_gain_index]
