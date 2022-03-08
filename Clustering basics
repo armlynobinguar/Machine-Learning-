@@ -28,3 +28,28 @@ extremism = (senator_distances ** 3).sum(axis=1)
 votes["extremism"] = extremism
 votes.sort_values("extremism", inplace=True, ascending=False)
 print(votes.head(10))
+
+# Add the function, `assign_to_cluster`
+# This creates the column, `cluster`, by applying assign_to_cluster row-by-row
+# Uncomment when ready
+
+# point_guards['cluster'] = point_guards.apply(lambda row: assign_to_cluster(row), axis=1)
+def assign_to_cluster(row):
+    lowest_distance = None
+    closest_cluster = None
+    
+    for cluster_id, centroid in centroids_dict.items():
+        df_row = [row['ppg'], row['atr']]
+        euclidean_distance = calculate_distance(centroid, df_row)
+        
+        if lowest_distance is None:
+            lowest_distance = euclidean_distance
+            closest_cluster = cluster_id 
+        elif euclidean_distance < lowest_distance:
+            lowest_distance = euclidean_distance
+            closest_cluster = cluster_id
+    return closest_cluster
+
+point_guards['cluster'] = point_guards.apply(lambda row: assign_to_cluster(row), axis=1)
+
+point_guards['cluster'] = point_guards.apply(lambda row: assign_to_cluster(row), axis=1)
