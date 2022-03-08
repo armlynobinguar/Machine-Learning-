@@ -17,3 +17,6 @@ senator_distances = kmeans_model.fit_transform(votes.iloc[:, 3:])
 
 labels = kmeans_model.labels_
 print(pd.crosstab(labels, votes["party"]))
+
+democratic_outliers = votes[(labels == 1) & (votes["party"] == "D")]
+print(democratic_outliers)
