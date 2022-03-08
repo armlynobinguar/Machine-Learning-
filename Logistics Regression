@@ -83,3 +83,12 @@ cars = pd.read_csv("auto.csv")
 print(cars.head())
 unique_regions = cars["origin"].unique()
 print(unique_regions)
+
+
+dummy_cylinders = pd.get_dummies(cars["cylinders"], prefix="cyl")
+cars = pd.concat([cars, dummy_cylinders], axis=1)
+dummy_years = pd.get_dummies(cars["year"], prefix="year")
+cars = pd.concat([cars, dummy_years], axis=1)
+cars = cars.drop("year", axis=1)
+cars = cars.drop("cylinders", axis=1)
+print(cars.head())
