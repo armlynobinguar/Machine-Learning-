@@ -125,3 +125,7 @@ for origin in unique_origins:
     X_test = test[features]   
     # Compute probability of observation being in the origin.
     testing_probs[origin] = models[origin].predict_proba(X_test)[:,1]
+
+
+predicted_origins = testing_probs.idxmax(axis=1)
+print(predicted_origins)
