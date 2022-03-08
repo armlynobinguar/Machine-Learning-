@@ -39,3 +39,10 @@ labels = model.predict(admissions[["gpa"]])
 admissions["predicted_label"] = labels
 print(admissions["predicted_label"].value_counts())
 print(admissions.head())
+
+admissions["actual_label"] = admissions["admit"]
+matches = admissions["predicted_label"] == admissions["actual_label"]
+correct_predictions = admissions[matches]
+print(correct_predictions.head())
+accuracy = len(correct_predictions) / len(admissions)
+print(accuracy)
