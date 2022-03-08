@@ -22,3 +22,20 @@ logistic_model = LogisticRegression()
 logistic_model.fit(admissions[["gpa"]], admissions["admit"])
 fitted_labels = logistic_model.predict(admissions[["gpa"]])
 plt.scatter(admissions["gpa"], fitted_labels)
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LogisticRegression
+
+admissions = pd.read_csv("admissions.csv")
+model = LogisticRegression()
+model.fit(admissions[["gpa"]], admissions["admit"])
+admissions = pd.read_csv("admissions.csv")
+model = LogisticRegression()
+model.fit(admissions[["gpa"]], admissions["admit"])
+
+labels = model.predict(admissions[["gpa"]])
+admissions["predicted_label"] = labels
+print(admissions["predicted_label"].value_counts())
+print(admissions.head())
