@@ -26,3 +26,12 @@ income = income.reindex(numpy.random.permutation(income.index))
 train_max_row = math.floor(income.shape[0] * .8)
 train = income.iloc[:train_max_row]
 test = income.iloc[train_max_row:]
+
+from sklearn.metrics import roc_auc_score
+
+clf = DecisionTreeClassifier(random_state=1)
+clf.fit(train[columns], train["high_income"])
+
+predictions = clf.predict(test[columns])
+error = roc_auc_score(test["high_income"], predictions)
+print(error)
