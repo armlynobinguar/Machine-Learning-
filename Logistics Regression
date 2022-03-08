@@ -3,3 +3,11 @@ import matplotlib.pyplot as plt
 admissions = pd.read_csv("admissions.csv")
 plt.scatter(admissions['gpa'], admissions['admit'])
 plt.show()
+
+
+from sklearn.linear_model import LinearRegression
+linear_model = LinearRegression()
+linear_model.fit(admissions[["gpa"]], admissions["admit"])
+from sklearn.linear_model import LogisticRegression
+logistic_model = LogisticRegression()
+logistic_model.fit(admissions[["gpa"]], admissions["admit"])
