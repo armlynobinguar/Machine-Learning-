@@ -116,3 +116,12 @@ for origin in unique_origins:
 
     model.fit(X_train, y_train)
     models[origin] = model
+    
+testing_probs = pd.DataFrame(columns=unique_origins)
+testing_probs = pd.DataFrame(columns=unique_origins)  
+
+for origin in unique_origins:
+    # Select testing features.
+    X_test = test[features]   
+    # Compute probability of observation being in the origin.
+    testing_probs[origin] = models[origin].predict_proba(X_test)[:,1]
