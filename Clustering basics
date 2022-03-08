@@ -20,3 +20,6 @@ print(pd.crosstab(labels, votes["party"]))
 
 democratic_outliers = votes[(labels == 1) & (votes["party"] == "D")]
 print(democratic_outliers)
+
+plt.scatter(x=senator_distances[:,0], y=senator_distances[:,1], c=labels, linewidths=0)
+plt.show()
