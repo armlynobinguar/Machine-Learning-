@@ -255,3 +255,37 @@ def id3(data, target, columns, tree):
 
 
 id3(data, "high_income", ["age", "marital_status"], tree)
+
+def print_with_depth(string, depth):
+    # Add space before a string
+    prefix = "    " * depth
+    # Print a string, and indent it appropriately
+    print("{0}{1}".format(prefix, string))
+    
+    
+def print_node(tree, depth):
+    # Check for the presence of "label" in the tree
+    if "label" in tree:
+        # If found, then this is a leaf, so print it and return
+        print_with_depth("Leaf: Label {0}".format(tree["label"]), depth)
+        # This is critical -- without it, you'll get infinite recursion
+        return
+    # Print information about what the node is splitting on
+    print_with_depth("{0} > {1}".format(tree["column"], tree["median"]), depth)
+    
+    # Create a list of tree branches
+    branches = [tree["left"], tree["right"]]
+        
+    # Insert code here to recursively call print_node on each branch
+    # Don't forget to increment depth when you pass it in
+
+print_node(tree, 0)
+def print_node(tree, depth):
+    if "label" in tree:
+        print_with_depth("Leaf: Label {0}".format(tree["label"]), depth)
+        return
+    print_with_depth("{0} > {1}".format(tree["column"], tree["median"]), depth)
+    for branch in [tree["left"], tree["right"]]:
+        print_node(branch, depth+1)
+
+print_node(tree, 0)
