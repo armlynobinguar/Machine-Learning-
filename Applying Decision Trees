@@ -45,3 +45,6 @@ clf.fit(train[columns], train["high_income"])
 predictions = clf.predict(test[columns])
 error = roc_auc_score(test["high_income"], predictions)
 print(error)
+
+predictions = clf.predict(train[columns])
+print(roc_auc_score(train["high_income"], predictions))
