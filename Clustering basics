@@ -1,0 +1,2 @@
+import pandas as pd
+votes = pd.read_csv("114_congress.csv")
