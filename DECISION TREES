@@ -289,3 +289,30 @@ def print_node(tree, depth):
         print_node(branch, depth+1)
 
 print_node(tree, 0)
+
+def predict(tree, row):
+    if "label" in tree:
+        return tree["label"]
+    
+    column = tree["column"]
+    median = tree["median"]
+    
+    # Insert code here to check whether row[column] is less than or equal to median
+    # If it's less than or equal, return the result of predicting on the left branch of the tree
+    # If it's greater, return the result of predicting on the right branch of the tree
+    # Remember to use the return statement to return the result!
+
+# Print the prediction for the first row in our data
+print(predict(tree, data.iloc[0]))
+def predict(tree, row):
+    if "label" in tree:
+        return tree["label"]
+    
+    column = tree["column"]
+    median = tree["median"]
+    if row[column] <= median:
+        return predict(tree["left"], row)
+    else:
+        return predict(tree["right"], row)
+
+print(predict(tree, data.iloc[0]))
