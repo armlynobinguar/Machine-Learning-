@@ -118,3 +118,74 @@ def find_best_column(data, target_name, columns):
     return highest_gain
 
 income_split = find_best_column(income, "high_income", columns)
+
+# We'll use lists to store our labels for nodes (when we find them)
+# Lists can be accessed inside our recursive function, whereas integers can't.  
+# Look at the python missions on scoping for more information on this topic
+label_1s = []
+label_0s = []
+
+def id3(data, target, columns):
+    # The pandas.unique method will return a list of all the unique values in a series
+    unique_targets = pandas.unique(data[target])
+    
+    if len(unique_targets) == 1:
+        # Insert code here to append 1 to label_1s or 0 to label_0s, based on what we should label the node
+        # See lines 2 and 3 in the algorithm
+        
+        # Returning here is critical -- if we don't, the recursive tree will never finish, and run forever
+        # See our example above for when we returned
+        return
+    
+    # Find the best column to split on in our data
+    best_column = find_best_column(data, target, columns)
+    # Find the median of the column
+    column_median = data[best_column].median()
+    
+    # Create the two splits
+    left_split = data[data[best_column] <= column_median]
+    right_split = data[data[best_column] > column_median]
+    
+    # Loop through the splits and call id3 recursively
+    for split in [left_split, right_split]:
+        # Call id3 recursively to process each branch
+        id3(split, target, columns)
+    
+# Create the data set that we used in the example on the last screen
+data = pandas.DataFrame([
+    [0,20,0],
+    [0,60,2],
+    [0,40,1],
+    [1,25,1],
+    [1,35,2],
+    [1,55,1]
+    ])
+# Assign column names to the data
+data.columns = ["high_income", "age", "marital_status"]
+
+# Call the function on our data to set the counters properly
+id3(data, "high_income", ["age", "marital_status"])
+label_1s = []
+label_0s = []
+
+def id3(data, target, columns):
+    unique_targets = pandas.unique(data[target])
+
+    if len(unique_targets) == 1:
+        if 0 in unique_targets:
+            label_0s.append(0)
+        elif 1 in unique_targets:
+            label_1s.append(1)
+        return
+    
+    best_column = find_best_column(data, target, columns)
+    column_median = data[best_column].median()
+    
+    left_split = data[data[best_column] <= column_median]
+    right_split = data[data[best_column] > column_median]
+    
+    for split in [left_split, right_split]:
+        id3(split, target, columns)
+
+
+id3(data, "high_income", ["age", "marital_status"])
