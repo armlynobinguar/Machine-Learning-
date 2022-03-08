@@ -55,3 +55,13 @@ true_negatives = len(admissions[true_negative_filter])
 
 print(true_positives)
 print(true_negatives)
+
+# From the previous screen
+true_positive_filter = (admissions["predicted_label"] == 1) & (admissions["actual_label"] == 1)
+true_positives = len(admissions[true_positive_filter])
+false_negative_filter = (admissions["predicted_label"] == 0) & (admissions["actual_label"] == 1)
+false_negatives = len(admissions[false_negative_filter])
+
+sensitivity = true_positives / (true_positives + false_negatives)
+
+print(sensitivity)
