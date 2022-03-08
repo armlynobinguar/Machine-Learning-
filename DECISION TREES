@@ -189,3 +189,69 @@ def id3(data, target, columns):
 
 
 id3(data, "high_income", ["age", "marital_status"])
+
+# Create a dictionary to hold the tree  
+# It has to be outside of the function so we can access it later
+tree = {}
+
+# This list will let us number the nodes  
+# It has to be a list so we can access it inside the function
+nodes = []
+
+def id3(data, target, columns, tree):
+    unique_targets = pandas.unique(data[target])
+    
+    # Assign the number key to the nodes list
+    nodes.append(len(nodes) + 1)
+    tree["number"] = nodes[-1]
+
+    if len(unique_targets) == 1:
+        # Insert code here that assigns the "label" field to the nodes list
+        return
+    
+    best_column = find_best_column(data, target, columns)
+    column_median = data[best_column].median()
+    
+    # Insert code here that assigns the "column" and "median" fields to the nodes list
+    
+    left_split = data[data[best_column] <= column_median]
+    right_split = data[data[best_column] > column_median]
+    split_dict = [["left", left_split], ["right", right_split]]
+    
+    for name, split in split_dict:
+        tree[name] = {}
+        id3(split, target, columns, tree[name])
+
+# Call the function on our data to set the counters properly
+id3(data, "high_income", ["age", "marital_status"], tree)
+tree = {}
+nodes = []
+
+def id3(data, target, columns, tree):
+    unique_targets = pandas.unique(data[target])
+    nodes.append(len(nodes) + 1)
+    tree["number"] = nodes[-1]
+
+    if len(unique_targets) == 1:
+        if 0 in unique_targets:
+            tree["label"] = 0
+        elif 1 in unique_targets:
+            tree["label"] = 1
+        return
+    
+    best_column = find_best_column(data, target, columns)
+    column_median = data[best_column].median()
+    
+    tree["column"] = best_column
+    tree["median"] = column_median
+    
+    left_split = data[data[best_column] <= column_median]
+    right_split = data[data[best_column] > column_median]
+    split_dict = [["left", left_split], ["right", right_split]]
+    
+    for name, split in split_dict:
+        tree[name] = {}
+        id3(split, target, columns, tree[name])
+
+
+id3(data, "high_income", ["age", "marital_status"], tree)
