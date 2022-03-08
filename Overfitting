@@ -85,3 +85,16 @@ four_mse, four_var = train_and_cross_val(["cylinders", "displacement", "horsepow
 five_mse, five_var = train_and_cross_val(["cylinders", "displacement", "horsepower", "weight", "acceleration"])
 six_mse, six_var = train_and_cross_val(["cylinders", "displacement", "horsepower", "weight", "acceleration", "model year"])
 seven_mse, seven_var = train_and_cross_val(["cylinders", "displacement", "horsepower", "weight", "acceleration","model year", "origin"])
+
+# We've hidden the `train_and_cross_val` function to save space but you can still call the function!
+import matplotlib.pyplot as plt
+        
+two_mse, two_var = train_and_cross_val(["cylinders", "displacement"])
+three_mse, three_var = train_and_cross_val(["cylinders", "displacement", "horsepower"])
+four_mse, four_var = train_and_cross_val(["cylinders", "displacement", "horsepower", "weight"])
+five_mse, five_var = train_and_cross_val(["cylinders", "displacement", "horsepower", "weight", "acceleration"])
+six_mse, six_var = train_and_cross_val(["cylinders", "displacement", "horsepower", "weight", "acceleration", "model year"])
+seven_mse, seven_var = train_and_cross_val(["cylinders", "displacement", "horsepower", "weight", "acceleration","model year", "origin"])
+plt.scatter([2,3,4,5,6,7], [two_mse, three_mse, four_mse, five_mse, six_mse, seven_mse], c='red')
+plt.scatter([2,3,4,5,6,7], [two_var, three_var, four_var, five_var, six_var, seven_var], c='blue')
+plt.show()
