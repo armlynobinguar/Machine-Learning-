@@ -41,3 +41,47 @@ four_mse, four_var = train_and_test(["cylinders", "displacement", "horsepower", 
 five_mse, five_var = train_and_test(["cylinders", "displacement", "horsepower", "weight", "acceleration"])
 six_mse, six_var = train_and_test(["cylinders", "displacement", "horsepower", "weight", "acceleration", "model year"])
 seven_mse, seven_var = train_and_test(["cylinders", "displacement", "horsepower", "weight", "acceleration","model year", "origin"])
+
+from sklearn.model_selection import KFold
+from sklearn.metrics import mean_squared_error
+import numpy as np
+def train_and_cross_val(cols):
+    features = filtered_cars[cols]
+    target = filtered_cars["mpg"]
+    
+    variance_values = []
+    mse_values = []
+    
+    # KFold instance.
+    kf = KFold(n_splits=10, shuffle=True, random_state=3)
+    
+    # Iterate through over each fold.
+    for train_index, test_index in kf.split(features):
+        # Training and test sets.
+        X_train, X_test = features.iloc[train_index], features.iloc[test_index]
+        y_train, y_test = target.iloc[train_index], target.iloc[test_index]
+        
+        # Fit the model and make predictions.
+        lr = LinearRegression()
+        lr.fit(X_train, y_train)
+        predictions = lr.predict(X_test)
+        
+        # Calculate mse and variance values for this fold.
+        mse = mean_squared_error(y_test, predictions)
+        var = np.var(predictions)
+
+        # Append to arrays to do calculate overall average mse and variance values.
+        variance_values.append(var)
+        mse_values.append(mse)
+   
+    # Compute average mse and variance values.
+    avg_mse = np.mean(mse_values)
+    avg_var = np.mean(variance_values)
+    return(avg_mse, avg_var)
+        
+two_mse, two_var = train_and_cross_val(["cylinders", "displacement"])
+three_mse, three_var = train_and_cross_val(["cylinders", "displacement", "horsepower"])
+four_mse, four_var = train_and_cross_val(["cylinders", "displacement", "horsepower", "weight"])
+five_mse, five_var = train_and_cross_val(["cylinders", "displacement", "horsepower", "weight", "acceleration"])
+six_mse, six_var = train_and_cross_val(["cylinders", "displacement", "horsepower", "weight", "acceleration", "model year"])
+seven_mse, seven_var = train_and_cross_val(["cylinders", "displacement", "horsepower", "weight", "acceleration","model year", "origin"])
