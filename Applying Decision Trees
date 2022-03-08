@@ -1,0 +1,12 @@
+from sklearn.tree import DecisionTreeClassifier
+
+# A list of columns to train with
+# We've already converted all columns to numeric
+columns = ["age", "workclass", "education_num", "marital_status", "occupation", "relationship", "race", "sex", "hours_per_week", "native_country"]
+
+# Instantiate the classifier
+# Set random_state to 1 to make sure the results are consistent
+clf = DecisionTreeClassifier(random_state=1)
+
+# We've already loaded the variable "income," which contains all of the income data
+clf.fit(income[columns], income["high_income"])
