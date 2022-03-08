@@ -105,3 +105,28 @@ train_auc = roc_auc_score(train["high_income"], train_predictions)
 
 print(test_auc)
 print(train_auc)
+
+numpy.random.seed(1)
+
+# Generate a column containing random numbers from 0 to 4
+income["noise"] = numpy.random.randint(4, size=income.shape[0])
+
+# Adjust "columns" to include the noise column
+columns = ["noise", "age", "workclass", "education_num", "marital_status", "occupation", "relationship", "race", "sex", "hours_per_week", "native_country"]
+
+# Make new train and test sets
+train_max_row = math.floor(income.shape[0] * .8)
+train = income.iloc[:train_max_row]
+test = income.iloc[train_max_row:]
+
+# Initialize the classifier
+clf = DecisionTreeClassifier(random_state=1)
+clf.fit(train[columns], train["high_income"])
+predictions = clf.predict(test[columns])
+test_auc = roc_auc_score(test["high_income"], predictions)
+
+train_predictions = clf.predict(train[columns])
+train_auc = roc_auc_score(train["high_income"], train_predictions)
+
+print(test_auc)
+print(train_auc)
