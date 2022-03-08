@@ -46,3 +46,12 @@ correct_predictions = admissions[matches]
 print(correct_predictions.head())
 accuracy = len(correct_predictions) / len(admissions)
 print(accuracy)
+
+true_positive_filter = (admissions["predicted_label"] == 1) & (admissions["actual_label"] == 1)
+true_positives = len(admissions[true_positive_filter])
+
+true_negative_filter = (admissions["predicted_label"] == 0) & (admissions["actual_label"] == 0)
+true_negatives = len(admissions[true_negative_filter])
+
+print(true_positives)
+print(true_negatives)
