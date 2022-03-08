@@ -1,0 +1,7 @@
+# Convert a single column from text categories to numbers
+col = pandas.Categorical(income["workclass"])
+income["workclass"] = col.codes
+print(income["workclass"].head(5))
+for name in ["education", "marital_status", "occupation", "relationship", "race", "sex", "native_country", "high_income"]:
+    col = pandas.Categorical(income[name])
+    income[name] = col.codes
