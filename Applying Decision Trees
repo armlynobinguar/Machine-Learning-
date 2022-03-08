@@ -10,3 +10,19 @@ clf = DecisionTreeClassifier(random_state=1)
 
 # We've already loaded the variable "income," which contains all of the income data
 clf.fit(income[columns], income["high_income"])
+
+import numpy
+import math
+
+# Set a random seed so the shuffle is the same every time
+numpy.random.seed(1)
+
+# Shuffle the rows  
+# This permutes the index randomly using numpy.random.permutation
+# Then, it reindexes the dataframe with the result
+# The net effect is to put the rows into random order
+income = income.reindex(numpy.random.permutation(income.index))
+
+train_max_row = math.floor(income.shape[0] * .8)
+train = income.iloc[:train_max_row]
+test = income.iloc[train_max_row:]
