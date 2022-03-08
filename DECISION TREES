@@ -316,3 +316,24 @@ def predict(tree, row):
         return predict(tree["right"], row)
 
 print(predict(tree, data.iloc[0]))
+
+new_data = pandas.DataFrame([
+    [40,0],
+    [20,2],
+    [80,1],
+    [15,1],
+    [27,2],
+    [38,1]
+    ])
+# Assign column names to the data
+new_data.columns = ["age", "marital_status"]
+
+def batch_predict(tree, df):
+    # Insert your code here
+    pass
+
+predictions = batch_predict(tree, new_data)
+def batch_predict(tree, df):
+    return df.apply(lambda x: predict(tree, x), axis=1)
+
+predictions = batch_predict(tree, new_data)
