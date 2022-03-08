@@ -1,0 +1,2 @@
+# Enter code here.
+point_guards = nba[nba['pos'] == 'PG']
