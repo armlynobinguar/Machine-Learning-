@@ -1,0 +1,6 @@
+import inspect
+raw_docstring = split_and_stack.__doc__
+print(raw_docstring)
+
+formatted_docstring = inspect.getdoc(split_and_stack)
+print(formatted_docstring)
