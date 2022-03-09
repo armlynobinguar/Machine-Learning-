@@ -76,3 +76,14 @@ all_y = train["Survived"]
 lr = LogisticRegression()
 scores = cross_val_score(lr, all_X, all_y, cv=10)
 accuracy = scores.mean()
+
+lr = LogisticRegression()
+lr.fit(all_X,all_y)
+holdout_predictions = lr.predict(holdout[optimized_columns])
+
+holdout_ids = holdout["PassengerId"]
+submission_df = {"PassengerId": holdout_ids,
+                 "Survived": holdout_predictions}
+submission = pd.DataFrame(submission_df)
+
+submission.to_csv("submission_2.csv",index=False)
