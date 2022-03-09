@@ -60,3 +60,8 @@ submission_df = {"PassengerId": holdout_ids,
 submission = pd.DataFrame(submission_df)
 
 submission.to_csv("submission_1.csv",index=False)
+
+from sklearn.ensemble import RandomForestClassifier
+clf = RandomForestClassifier(random_state=1)
+scores = cross_val_score(clf, all_X, all_y, cv=10)
+accuracy_rf = scores.mean()
