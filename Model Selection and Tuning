@@ -16,3 +16,20 @@ knn = KNeighborsClassifier(n_neighbors=1)
 
 scores = cross_val_score(knn, all_X, all_y, cv=10)
 accuracy_knn = scores.mean()
+
+import matplotlib.pyplot as plt
+
+def plot_dict(dictionary):
+    pd.Series(dictionary).plot.bar(figsize=(9,6),
+                                   ylim=(0.78,0.83),rot=0)
+    plt.show()
+
+knn_scores = dict()
+for k in range(1,50,2):
+    knn = KNeighborsClassifier(n_neighbors=k)
+
+    scores = cross_val_score(knn, all_X, all_y, cv=10)
+    accuracy_knn = scores.mean()
+    knn_scores[k] = accuracy_knn
+
+plot_dict(knn_scores)
