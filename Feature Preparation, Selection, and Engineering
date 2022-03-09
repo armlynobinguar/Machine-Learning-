@@ -70,3 +70,9 @@ optimized_columns = all_X.columns[selector.support_]
         
 # print(check_list())
 # print(check_length())
+
+all_X = train[optimized_columns]
+all_y = train["Survived"]
+lr = LogisticRegression()
+scores = cross_val_score(lr, all_X, all_y, cv=10)
+accuracy = scores.mean()
