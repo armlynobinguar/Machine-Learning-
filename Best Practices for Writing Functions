@@ -131,3 +131,14 @@ def find_median(values):
 
 list_mean = find_mean([1,2,3])
 list_median = find_median([1,2,3,4])
+
+
+a = [1, 2, 3]
+b = a
+a.append(4)
+print(b)
+
+b.append(5)
+print(a)
+
+a = 42
