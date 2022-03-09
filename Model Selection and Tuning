@@ -49,3 +49,14 @@ grid.fit(all_X, all_y)
 
 best_params = grid.best_params_
 best_score = grid.best_score_
+
+holdout_no_id = holdout.drop(['PassengerId'],axis=1)
+best_knn = grid.best_estimator_
+holdout_predictions = best_knn.predict(holdout_no_id)
+
+holdout_ids = holdout["PassengerId"]
+submission_df = {"PassengerId": holdout_ids,
+                 "Survived": holdout_predictions}
+submission = pd.DataFrame(submission_df)
+
+submission.to_csv("submission_1.csv",index=False)
