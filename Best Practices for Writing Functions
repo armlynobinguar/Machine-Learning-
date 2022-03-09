@@ -142,3 +142,10 @@ b.append(5)
 print(a)
 
 a = 42
+
+def foo(var=[]):
+    var.append(1)
+    return var
+
+print(foo())
+print(foo())
