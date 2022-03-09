@@ -1,3 +1,12 @@
 import pandas as pd
 train = pd.read_csv('train_modified.csv')
 holdout = pd.read_csv('holdout_modified.csv')
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import cross_val_score
+
+all_X = train.drop(['Survived','PassengerId'],axis=1)
+all_y = train['Survived']
+lr = LogisticRegression()
+scores = cross_val_score(lr, all_X, all_y, cv=10)
+accuracy_lr = scores.mean()
