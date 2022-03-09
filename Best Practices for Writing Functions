@@ -188,3 +188,6 @@ df_1 = add_column(values=range(10))
 print(df_1)
 df_2 = add_column(values=range(10))
 print(df_2)
+
+with open('my_file.txt') as my_file:
+     print(my_file.read())
