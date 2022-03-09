@@ -65,3 +65,19 @@ from sklearn.ensemble import RandomForestClassifier
 clf = RandomForestClassifier(random_state=1)
 scores = cross_val_score(clf, all_X, all_y, cv=10)
 accuracy_rf = scores.mean()
+
+hyperparameters = {"criterion": ["entropy", "gini"],
+                   "max_depth": [5, 10],
+                   "max_features": ["log2", "sqrt"],
+                   "min_samples_leaf": [1, 5],
+                   "min_samples_split": [3, 5],
+                   "n_estimators": [6, 9]
+}
+
+clf = RandomForestClassifier(random_state=1)
+grid = GridSearchCV(clf,param_grid=hyperparameters,cv=10)
+
+grid.fit(all_X, all_y)
+
+best_params = grid.best_params_
+best_score = grid.best_score_
