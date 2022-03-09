@@ -27,3 +27,46 @@ columns = ['Age_categories_Missing', 'Age_categories_Infant',
        'Title_Royalty', 'Cabin_type_A','Cabin_type_B', 'Cabin_type_C', 'Cabin_type_D',
        'Cabin_type_E','Cabin_type_F', 'Cabin_type_G', 'Cabin_type_T', 'Cabin_type_Unknown']
 plot_correlation_heatmap(train[columns])
+
+from sklearn.feature_selection import RFECV
+
+columns = ['Age_categories_Missing', 'Age_categories_Infant',
+       'Age_categories_Child', 'Age_categories_Young Adult',
+       'Age_categories_Adult', 'Age_categories_Senior', 'Pclass_1', 'Pclass_3',
+       'Embarked_C', 'Embarked_Q', 'Embarked_S', 'SibSp_scaled',
+       'Parch_scaled', 'Fare_categories_0-12', 'Fare_categories_50-100',
+       'Fare_categories_100+', 'Title_Miss', 'Title_Mr', 'Title_Mrs',
+       'Title_Officer', 'Title_Royalty', 'Cabin_type_B', 'Cabin_type_C',
+       'Cabin_type_D', 'Cabin_type_E', 'Cabin_type_F', 'Cabin_type_G',
+       'Cabin_type_T', 'Cabin_type_Unknown']
+
+all_X = train[columns]
+all_y = train["Survived"]
+lr = LogisticRegression()
+selector = RFECV(lr,cv=10)
+selector.fit(all_X,all_y)
+
+optimized_columns = all_X.columns[selector.support_]
+# ## Check code run
+# correct_answer = ['SibSp_scaled', 'Title_Mr', 'Title_Officer', 'Cabin_type_Unknown']
+
+# def check_list():
+#     try:
+#         if all(elem in optimized_columns  for elem in correct_answer):
+#             return True    
+#         else:
+#             return False, "The output of `optimized_columns` does not match what we expected."
+#     except:
+# 		    return False, "The variable `optimized_columns` was not found"
+        
+# def check_length():
+#     try:
+#         if len(optimized_columns) == len(correct_answer):
+#             return True    
+#         else:
+#             return False, "The output of `optimized_columns` does not match what we expected."
+#     except:
+# 		    return (False, None)
+        
+# print(check_list())
+# print(check_length())
