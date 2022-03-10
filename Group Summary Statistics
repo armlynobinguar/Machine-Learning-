@@ -34,3 +34,9 @@ SELECT Major_category, Sample_category,
        SUM(Total) AS Total_graduates
   FROM new_grads
  GROUP BY Major_category, Sample_category;
+
+SELECT Major_category,
+       AVG(Low_wage_jobs) / AVG(Total) AS Share_low_wage
+  FROM new_grads
+ GROUP BY Major_category
+HAVING share_low_wage > .1;
