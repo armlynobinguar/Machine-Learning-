@@ -26,3 +26,8 @@ SELECT Major, Median, Unemployed
  WHERE Median >= 10000 
     OR Men > Women
  LIMIT 20;
+
+SELECT Major, Major_category, ShareWomen, Unemployment_rate
+  FROM recent_grads
+ WHERE (Major_category = 'Engineering') 
+   AND (ShareWomen > 0.5 OR Unemployment_rate < 0.051);
