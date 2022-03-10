@@ -51,3 +51,9 @@ SELECT ROUND(ShareWomen, 4) AS Rounded_women,
   FROM new_grads
  GROUP BY Major_category
 HAVING Share_degree_jobs < .3;
+
+SELECT Major_category,
+       CAST(SUM(Women) as Float)/Cast(SUM(Total) as Float) AS SW
+  FROM new_grads
+ GROUP BY Major_category
+ ORDER BY SW;
