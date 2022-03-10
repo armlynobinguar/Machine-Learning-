@@ -21,3 +21,10 @@ SELECT CASE
        AVG(ShareWomen) AS Average_women
   FROM recent_grads
  GROUP BY Major_category;
+
+SELECT Major_category,
+       SUM(Women) AS Total_women,
+       AVG(ShareWomen) AS Mean_women,
+       SUM(Total)*AVG(ShareWomen) AS Estimate_women
+  FROM recent_grads
+ GROUP BY Major_category;
