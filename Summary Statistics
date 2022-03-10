@@ -19,3 +19,9 @@ SELECT AVG(Total), MIN(Men), MAX(Women)
        COUNT(DISTINCT Major_category) AS unique_major_categories,
        COUNT(DISTINCT Major_code) AS unique_major_codes
   FROM recent_grads;
+  
+  SELECT 'Major: ' || LOWER(Major) AS Major,
+       Total, Men, Women, Unemployment_rate,
+       LENGTH(Major) AS Length_of_name
+  FROM recent_grads
+ ORDER BY Unemployment_rate DESC;
