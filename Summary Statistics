@@ -10,3 +10,7 @@ SELECT COUNT(*), COUNT(Unemployment_rate)
 
 SELECT AVG(Total), MIN(Men), MAX(Women)
   FROM recent_grads;
+  
+  SELECT COUNT(*) 'Number of Majors',
+       MAX(Unemployment_rate) 'Highest Unemployment Rate'
+  FROM recent_grads;
