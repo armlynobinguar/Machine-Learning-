@@ -57,3 +57,8 @@ SELECT Major_category,
   FROM new_grads
  GROUP BY Major_category
  ORDER BY SW;
+
+
+SELECT Major, ShareWomen
+  FROM recent_grads
+ WHERE ShareWomen > 0.5225502029537575;
