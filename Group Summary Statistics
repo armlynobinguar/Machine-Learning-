@@ -76,3 +76,7 @@ SELECT CAST(COUNT(*) as FLOAT)/(SELECT COUNT(*)
  WHERE ShareWomen > (SELECT AVG(ShareWomen)
                        FROM recent_grads
                     );
+
+SELECT Major_category, Major
+  FROM recent_grads
+ WHERE Major_category IN ('Business', 'Humanities & Liberal Arts', 'Education');
