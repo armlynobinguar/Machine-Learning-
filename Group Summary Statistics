@@ -16,3 +16,8 @@ SELECT CASE
   SELECT Major_category, SUM(Total) AS Total_graduates
   FROM recent_grads
  GROUP BY Major_category;
+ 
+ SELECT Major_category,
+       AVG(ShareWomen) AS Average_women
+  FROM recent_grads
+ GROUP BY Major_category;
