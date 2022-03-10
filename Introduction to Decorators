@@ -303,3 +303,41 @@ def print_hello():
     print('Hello!')
 
 print_hello()
+
+import signal
+def timeout_in_5s(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        # Set an alarm for 5 seconds
+        signal.alarm(5)
+        try:
+            # Call the decorated func
+            return func(*args, **kwargs)
+        finally:
+            # Cancel alarm
+            signal.alarm(0)
+    return wrapper
+
+def bar():
+    time.sleep(10)
+    print('bar!')
+def timeout(n_seconds):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            # Set an alarm for n seconds
+            signal.alarm(n_seconds)
+            try:
+               # Call the decorated func
+               return func(*args, **kwargs)
+            finally:
+               # Cancel alarm
+               signal.alarm(0)
+        return wrapper
+    return decorator
+
+@timeout(20)
+def bar():
+    time.sleep(10)
+    print('bar!')
+bar()
