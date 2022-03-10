@@ -12,3 +12,7 @@ SELECT CASE
        ELSE 'Large'
        END AS Sample_category
   FROM recent_grads;
+  
+  SELECT Major_category, SUM(Total) AS Total_graduates
+  FROM recent_grads
+ GROUP BY Major_category;
