@@ -53,3 +53,46 @@ print('5 + 2 = {}'.format(add(5, 2)))
 
 subtract = create_math_function('subtract')
 print('5 - 2 = {}'.format(subtract(5, 2)))
+
+
+x = 50
+
+def one():
+    x = 10
+
+def two():
+    x = 30
+  
+def three():
+    x = 100
+    def four():
+        x = 2
+    four()
+    print(x)
+     
+
+for func in [one, two, three]:
+    func()
+    print(x)
+#Solution
+x = 50
+
+def one():
+    x = 10
+
+def two():
+    global x
+    x = 30
+
+def three():
+    x = 100
+    def four():
+        nonlocal x
+        x = 2
+    four()
+    print(x)
+     
+
+for func in [one, two, three]:
+    func()
+    print(x)
