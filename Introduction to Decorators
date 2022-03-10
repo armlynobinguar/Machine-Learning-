@@ -276,3 +276,30 @@ def print_sum(a, b):
 
 print_sum(10, 20)
 print(print_sum.__doc__)
+
+def run_n_times(n):
+    """Define and return a decorator"""
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            for i in range(n):
+                func(*args, **kwargs)
+        return wrapper
+    return decorator
+
+def print_sum(a, b):
+    print(a + b)
+
+def print_hello():
+    print('Hello!')
+#SOLUTION
+@run_n_times(3)
+def print_sum(a, b):
+    print(a + b)
+
+print_sum(3, 5)
+
+@run_n_times(5)
+def print_hello():
+    print('Hello!')
+
+print_hello()
