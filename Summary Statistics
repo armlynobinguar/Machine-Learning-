@@ -25,3 +25,8 @@ SELECT AVG(Total), MIN(Men), MAX(Women)
        LENGTH(Major) AS Length_of_name
   FROM recent_grads
  ORDER BY Unemployment_rate DESC;
+ 
+ SELECT Major, Major_category, (P75th - P25th) AS quartile_spread
+  FROM recent_grads
+ ORDER BY quartile_spread
+ LIMIT 20;
