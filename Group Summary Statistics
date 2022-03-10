@@ -28,3 +28,9 @@ SELECT Major_category,
        SUM(Total)*AVG(ShareWomen) AS Estimate_women
   FROM recent_grads
  GROUP BY Major_category;
+
+SELECT Major_category, Sample_category,
+       AVG(ShareWomen) AS Mean_women,
+       SUM(Total) AS Total_graduates
+  FROM new_grads
+ GROUP BY Major_category, Sample_category;
