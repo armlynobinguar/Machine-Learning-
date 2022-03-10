@@ -14,3 +14,8 @@ SELECT AVG(Total), MIN(Men), MAX(Women)
   SELECT COUNT(*) 'Number of Majors',
        MAX(Unemployment_rate) 'Highest Unemployment Rate'
   FROM recent_grads;
+  
+  SELECT COUNT(DISTINCT Major) AS unique_majors,
+       COUNT(DISTINCT Major_category) AS unique_major_categories,
+       COUNT(DISTINCT Major_code) AS unique_major_codes
+  FROM recent_grads;
