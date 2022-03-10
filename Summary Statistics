@@ -4,3 +4,6 @@ SELECT MIN(Unemployment_rate)
 SELECT COUNT(Major)
   FROM recent_grads
  WHERE ShareWomen < 0.5;
+
+SELECT COUNT(*), COUNT(Unemployment_rate)
+  FROM recent_grads;
