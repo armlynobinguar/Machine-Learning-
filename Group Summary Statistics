@@ -62,3 +62,9 @@ SELECT Major_category,
 SELECT Major, ShareWomen
   FROM recent_grads
  WHERE ShareWomen > 0.5225502029537575;
+
+SELECT Major, Unemployment_rate
+  FROM recent_grads
+ WHERE Unemployment_rate < (SELECT AVG(Unemployment_rate)
+                              FROM recent_grads
+                           );
