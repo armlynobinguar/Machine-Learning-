@@ -1,0 +1,2 @@
+SELECT MIN(Unemployment_rate)
+  FROM recent_grads;
