@@ -31,3 +31,9 @@ SELECT Major, Major_category, ShareWomen, Unemployment_rate
   FROM recent_grads
  WHERE (Major_category = 'Engineering') 
    AND (ShareWomen > 0.5 OR Unemployment_rate < 0.051);
+   
+SELECT Major_category, Major, Unemployment_rate 
+    FROM recent_grads 
+   WHERE Major_category='Engineering' 
+      OR Major_category='Physical Sciences' 
+ORDER BY Unemployment_rate;
