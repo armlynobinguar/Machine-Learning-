@@ -91,3 +91,10 @@ INNER JOIN (
            ON ta.track_id = il.track_id
 GROUP BY 1, 2
 ORDER BY 3 DESC LIMIT 5;
+
+SELECT
+    first_name,
+    last_name,
+    phone
+FROM customer
+where first_name LIKE "%belle%";
