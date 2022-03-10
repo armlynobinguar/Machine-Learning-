@@ -215,3 +215,34 @@ def foo(value):
 print(foo(42))
 print(foo([1, 2, 3]))
 print(foo({'a': 42}))
+
+def timer(func):
+    """A decorator that prints how long a function took to run."""  
+    def wrapper(*args, **kwargs):
+        t_start = time.time()
+    
+        result = func(*args, **kwargs)
+    
+        t_total = time.time() - t_start
+        print('{} took {}s'.format(func.__name__, t_total))
+    
+        return result
+    return wrapper
+
+def sleep_n_seconds(n=10):
+    """Pause processing for n seconds.
+  
+    Args:
+        n (int): The number of seconds to pause for.
+    """
+    time.sleep(n)
+@timer
+def sleep_n_seconds(n=10):
+    """Pause processing for n seconds.
+  
+    Args:
+        n (int): The number of seconds to pause for.
+    """
+    time.sleep(n)
+print(sleep_n_seconds.__doc__)
+print(sleep_n_seconds.__name__)
