@@ -40,3 +40,8 @@ SELECT Major_category,
   FROM new_grads
  GROUP BY Major_category
 HAVING share_low_wage > .1;
+
+SELECT ROUND(ShareWomen, 4) AS Rounded_women,
+       Major_category
+  FROM new_grads
+ LIMIT 10;
