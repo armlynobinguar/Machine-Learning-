@@ -7,3 +7,6 @@ SELECT COUNT(Major)
 
 SELECT COUNT(*), COUNT(Unemployment_rate)
   FROM recent_grads;
+
+SELECT AVG(Total), MIN(Men), MAX(Women)
+  FROM recent_grads;
