@@ -89,3 +89,6 @@ SELECT Major_category, Major
                            ORDER BY SUM(TOTAL) DESC
                            LIMIT 3
                          );
+                         
+ SELECT AVG(CAST(Sample_size AS FLOAT)/Total) AS avg_ratio
+  FROM recent_grads;
