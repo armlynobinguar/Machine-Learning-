@@ -20,3 +20,9 @@ SELECT *
   FROM recent_grads 
  WHERE ShareWomen > 0.5 
    AND Median > 50000;
+   
+SELECT Major, Median, Unemployed 
+  FROM recent_grads 
+ WHERE Median >= 10000 
+    OR Men > Women
+ LIMIT 20;
