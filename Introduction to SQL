@@ -8,3 +8,6 @@ select * from recent_grads;
 SELECT *
   FROM recent_grads
  LIMIT 5;
+ 
+ SELECT Major, ShareWomen  
+  FROM recent_grads;
