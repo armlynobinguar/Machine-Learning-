@@ -28,3 +28,13 @@ page2_repos = response.json()
 # Enter your code here.
 response = requests.get("https://api.github.com/user", headers=headers)
 user = response.json()
+
+# Create the data we'll pass into the API endpoint.  While this endpoint only requires the "name" key, there are other optional keys.
+payload = {"name": "test"}
+
+# We need to pass in our authentication headers!
+response = requests.post("https://api.github.com/user/repos", json=payload, headers=headers)
+print(response.status_code)
+payload = {"name": "learning-about-apis"}
+response = requests.post("https://api.github.com/user/repos", json=payload, headers=headers)
+status = response.status_code
