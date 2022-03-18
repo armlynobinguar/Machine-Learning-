@@ -5,3 +5,7 @@ status_code = response.status_code
 # Enter your answer below.
 response = requests.get("http://api.open-notify.org/iss-pass")
 status_code = response.status_code
+
+# Enter your answer below.
+response = requests.get("http://api.open-notify.org/iss-pass.json")
+status_code = response.status_code
