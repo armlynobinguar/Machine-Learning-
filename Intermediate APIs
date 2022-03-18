@@ -17,3 +17,10 @@ torvalds = response.json()
 # Enter your answer here.
 response = requests.get("https://api.github.com/repos/octocat/Hello-World", headers=headers)
 hello_world = response.json()
+
+params = {"per_page": 50, "page": 1}
+response = requests.get("https://api.github.com/users/VikParuchuri/starred", headers=headers, params=params)
+page1_repos = response.json()
+params = {"per_page": 50, "page": 2}
+response = requests.get("https://api.github.com/users/VikParuchuri/starred", headers=headers, params=params)
+page2_repos = response.json()
