@@ -9,3 +9,7 @@ response = requests.get("https://api.github.com/users/VikParuchuri", headers=hea
 print(response.json())
 response = requests.get("https://api.github.com/users/VikParuchuri/orgs", headers=headers)
 orgs = response.json()
+
+# We've loaded headers in.
+response = requests.get("https://api.github.com/users/torvalds", headers=headers)
+torvalds = response.json()
