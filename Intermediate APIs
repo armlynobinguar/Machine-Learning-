@@ -13,3 +13,7 @@ orgs = response.json()
 # We've loaded headers in.
 response = requests.get("https://api.github.com/users/torvalds", headers=headers)
 torvalds = response.json()
+
+# Enter your answer here.
+response = requests.get("https://api.github.com/repos/octocat/Hello-World", headers=headers)
+hello_world = response.json()
