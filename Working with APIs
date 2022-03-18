@@ -63,3 +63,8 @@ json_data = response.json()
 print(type(json_data))
 print(json_data)
 first_pass_duration = json_data["response"][0]["duration"]
+
+
+# Headers is a dictionary
+print(response.headers)
+content_type = response.headers["content-type"]
