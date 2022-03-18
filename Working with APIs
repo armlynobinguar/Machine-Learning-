@@ -68,3 +68,9 @@ first_pass_duration = json_data["response"][0]["duration"]
 # Headers is a dictionary
 print(response.headers)
 content_type = response.headers["content-type"]
+
+# Call the API here.
+response = requests.get("http://api.open-notify.org/astros.json")
+json_data = response.json()
+
+in_space_count = json_data["number"]
