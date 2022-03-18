@@ -45,3 +45,8 @@ print(response.status_code)
 payload = {"description": "Learning about requests!", "name": "learning-about-apis"}
 response = requests.patch("https://api.github.com/repos/VikParuchuri/learning-about-apis", json=payload, headers=headers)
 status = response.status_code
+
+response = requests.delete("https://api.github.com/repos/VikParuchuri/test", headers=headers)
+print(response.status_code)
+response = requests.delete("https://api.github.com/repos/VikParuchuri/learning-about-apis", headers=headers)
+status = response.status_code
